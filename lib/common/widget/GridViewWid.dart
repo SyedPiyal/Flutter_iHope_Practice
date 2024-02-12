@@ -61,7 +61,7 @@ class _GridView extends State<GridViewWid>{
               /*Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => const DetailsActivty()));*/
+                                        builder: (context) => const SelfTest()));*/
             });
           },
           ),
