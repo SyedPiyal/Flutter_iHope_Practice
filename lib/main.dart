@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ihope_practice/views/home/view.dart';
+import 'package:ihope_practice/views/language/language.dart';
+import 'package:ihope_practice/views/selfTest/SelfTest.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +20,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Hello'),
+      home:   const MyHomePage(title: '',),
     );
   }
 }

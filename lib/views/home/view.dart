@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:ihope_practice/views/home/widget/EndDrawerWidget.dart';
+import 'package:ihope_practice/common/widget/SearchField.dart';
 import 'package:ihope_practice/common/widget/GridViewWid.dart';
 import 'package:ihope_practice/common/widget/GridviewWidget.dart';
 import 'package:ihope_practice/common/widget/QuickAccessList.dart';
 import 'package:ihope_practice/common/widget/Slider.dart';
+import 'package:ihope_practice/views/selfTest/SelfTest.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../common/widget/CustomBottomNavigation.dart';
@@ -104,30 +105,99 @@ class _MyHomePageState extends State<MyHomePage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         //search option
-                        SizedBox(
-                          height: 50,
-                          child: TextField(
-                            decoration: InputDecoration(
-                                prefixIcon: const Icon(Icons.search),
-                                hintText: 'Search a doctor or health issue',
-                                filled: true,
-                                fillColor: const Color(0xFFCFDFE2),
-                                enabledBorder: OutlineInputBorder(
-                                    borderSide: const BorderSide(
-                                        color: Color(0xFFf3f3f2), width: 1),
-                                    borderRadius: BorderRadius.circular(10)),
-                                //labelText: "01266",
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide: const BorderSide(),
-                                )),
-                            keyboardType: TextInputType.text,
-                          ),
-                        ),
+                        SearchFiled(),
                         //cardview item
-                        const Padding(
-                          padding: EdgeInsets.only(top: 20),
-                          child: SizedBox(height: 170,child: GridViewWidget()),
+                         Padding(
+                          padding: EdgeInsets.only(top: 20,bottom: 20),
+                          child: SizedBox(height: 170,child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                            Material(
+                            type: MaterialType.transparency,
+                            elevation: 6.0,
+                            color: Colors.transparent,
+                            child: InkWell(
+                              child: Card(elevation: 10,
+                                  child: Container(
+                                    width: 152,
+                                    height: 170,
+                                    decoration: BoxDecoration(
+                                      gradient: const LinearGradient(
+                                        begin: Alignment.topCenter,
+                                        end: Alignment.bottomCenter,
+                                        colors: [
+                                          Color(0xff237B86),
+                                          Color(0xff02485B),
+                                        ],
+                                      ),
+                                      borderRadius: BorderRadius.circular(14),
+                                    ),
+                                    child:  Padding(
+                                      padding: const EdgeInsets.all(12),
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          //Icon(data["image"],color: Colors.black,size: 50),
+                                          Image.asset("assets/images/upload.png",width: 45,height: 45),
+                                          const SizedBox(
+                                            height: 10,
+                                          ),
+                                          Text("Upload Prescription",style: TextStyle(color: Color(0xffFFFFFF),fontWeight: FontWeight.bold),)
+
+                                        ],
+                                      ),
+                                    ),
+                                  )),onTap: (){
+                              setState(() {
+                                /*Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => const DetailsActivty()));*/
+                              });
+                            },
+                            ),
+                          ),
+                              Material(
+                                type: MaterialType.transparency,
+                                elevation: 6.0,
+                                color: Colors.transparent,
+                                child: InkWell(
+                                  child: Card(elevation: 10,
+                                      child: Container(
+                                        width: 152,
+                                        height: 170,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(14),
+                                          color: Color(0xffCFDFE2),
+                                        ),
+                                        child:  Padding(
+                                          padding: const EdgeInsets.all(12),
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              //Icon(data["image"],color: Colors.black,size: 50),
+                                              Image.asset("assets/images/test.png",width: 45,height: 45),
+                                              const SizedBox(
+                                                height: 10,
+                                              ),
+                                              Text("All Self Test",style: TextStyle(color: Color(
+                                                  0xff000000),fontWeight: FontWeight.bold),)
+
+                                            ],
+                                          ),
+                                        ),
+                                      )),onTap: (){
+                                  setState(() {
+                                    Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => const SelfTest()));
+                                  });
+                                },
+                                ),
+                              ),
+                            ],
+                          )),
                         ),
 
                         //image slider and indicator
@@ -136,7 +206,14 @@ class _MyHomePageState extends State<MyHomePage> {
                         const Text("New Features",style: TextStyle(fontWeight: FontWeight.bold)),
                         const Padding(
                           padding: EdgeInsets.only(top: 20),
-                          child: SizedBox(height: 320,child: GridViewWid()),
+                          child: SizedBox(height: 320,child: GridViewWid(
+                            colors: [
+                              Color(0xffE2F2FF),
+                              Color(0xffFDDEE3),
+                              Color(0xffDEE9FD),
+                              Color(0xffFEEDE2),
+                            ],
+                          )),
                         ),
                         const Padding(
                           padding: EdgeInsets.only(top: 25,bottom: 20),
@@ -149,29 +226,24 @@ class _MyHomePageState extends State<MyHomePage> {
                           child: Container(height: 100,
                               child: const QuickAccessList()),
                         ),
-                        SizedBox(height: 80,)
+                        //SizedBox(height: 80,)
                       ],
                     ),
                   ),
                 ),
-                Positioned(
-                  bottom: 0,left: 0,right: 0,
-                  child: AnimatedCurvedNavigationBar(
-                  currentIndex: myCurrentIndex,
-                  onTap: (index) {
-                    setState(() {
-                      myCurrentIndex = index;
-                    });
-                  },
-                ),)
               ],
             ),
           ),
         ),
-
-
-
-        endDrawer: EndDrawerWidget(), // Use the EndDrawerWidget
+        bottomNavigationBar: AnimatedCurvedNavigationBar(
+          currentIndex: myCurrentIndex,
+          onTap: (index) {
+            setState(() {
+              myCurrentIndex = index;
+            });
+          },
+        ),
+        // Use the EndDrawerWidget
 
       ),
     );
