@@ -8,7 +8,7 @@ import 'package:ihope_practice/common/widget/QuickAccessList.dart';
 import 'package:ihope_practice/common/widget/Slider.dart';
 import 'package:ihope_practice/views/selfTest/SelfTest.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../common/widget/CustomBottomNavigation.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -56,14 +56,14 @@ class _MyHomePageState extends State<MyHomePage> {
                     //color: Colors.redAccent,
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(left: 20, bottom: 5),
+                 Padding(
+                  padding: const EdgeInsets.only(left: 20, bottom: 5),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Hello", style: TextStyle(fontSize: 14)),
-                      Text("Golam Nobi Aunto",
-                          style: TextStyle(
+                      Text(AppLocalizations.of(context)!.hello, style: const TextStyle(fontSize: 14)),
+                      Text(AppLocalizations.of(context)!.userName,
+                          style: const TextStyle(
                               fontSize: 17, fontWeight: FontWeight.bold))
                     ],
                   ),
@@ -73,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           actions:  [
             Padding(
-              padding: const EdgeInsets.only(right: 20),
+              padding: const EdgeInsets.only(right: 10),
               child: IconButton(
                 icon: const Icon(Icons.menu_sharp, color: Color(0xff115F6E)),
                 onPressed: () {
@@ -105,10 +105,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         //search option
-                        SearchFiled(),
+                        const SearchFiled(),
                         //cardview item
                          Padding(
-                          padding: EdgeInsets.only(top: 20,bottom: 20),
+                          padding: const EdgeInsets.only(top: 20,bottom: 20),
                           child: SizedBox(height: 170,child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -142,7 +142,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                           const SizedBox(
                                             height: 10,
                                           ),
-                                          Text("Upload Prescription",style: TextStyle(color: Color(0xffFFFFFF),fontWeight: FontWeight.bold),)
+                                          Text(AppLocalizations.of(context)!.uploadPrescription,style: const TextStyle(color: Color(0xffFFFFFF),fontWeight: FontWeight.bold),)
 
                                         ],
                                       ),
@@ -168,7 +168,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         height: 170,
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(14),
-                                          color: Color(0xffCFDFE2),
+                                          color: const Color(0xffCFDFE2),
                                         ),
                                         child:  Padding(
                                           padding: const EdgeInsets.all(12),
@@ -180,7 +180,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                               const SizedBox(
                                                 height: 10,
                                               ),
-                                              Text("All Self Test",style: TextStyle(color: Color(
+                                              Text(AppLocalizations.of(context)!.allSelfTest,style: const TextStyle(color: Color(
                                                   0xff000000),fontWeight: FontWeight.bold),)
 
                                             ],
@@ -201,30 +201,48 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
 
                         //image slider and indicator
-                        const SizedBox(
-                            height: 140,child: ImageSlider()),
-                        const Text("New Features",style: TextStyle(fontWeight: FontWeight.bold)),
-                        const Padding(
-                          padding: EdgeInsets.only(top: 20),
+                         SizedBox(
+                            height: 140,child: ImageSlider(
+                            itemList: [
+                        {"name": AppLocalizations.of(context)!.doctorName, "subName": AppLocalizations.of(context)!.designation},
+                        {"name": AppLocalizations.of(context)!.doctorName, "subName": AppLocalizations.of(context)!.designation},
+                        {"name": AppLocalizations.of(context)!.doctorName, "subName": AppLocalizations.of(context)!.designation},
+                        {"name": AppLocalizations.of(context)!.doctorName, "subName": AppLocalizations.of(context)!.designation},
+
+                        ],
+
+                        )),
+                         Text(AppLocalizations.of(context)!.features,style: const TextStyle(fontWeight: FontWeight.bold)),
+                         Padding(
+                          padding: const EdgeInsets.only(top: 20),
                           child: SizedBox(height: 320,child: GridViewWid(
-                            colors: [
-                              Color(0xffE2F2FF),
-                              Color(0xffFDDEE3),
-                              Color(0xffDEE9FD),
-                              Color(0xffFEEDE2),
+                            itemList: [
+                              {"text": AppLocalizations.of(context)!.doctor, "image": "assets/images/doctor.png", "textColor": Colors.black, "color": const Color(0xffE2F2FF)},
+                              {"text": AppLocalizations.of(context)!.ambulance, "image": "assets/images/ambulance.png", "textColor": Colors.black, "color": const Color(0xffFDDEE3)},
+                              {"text": AppLocalizations.of(context)!.healthCare, "image": "assets/images/health.png", "textColor": Colors.black, "color": const Color(0xffDEE9FD)},
+                              {"text": AppLocalizations.of(context)!.pharmacy, "image": "assets/images/shop.png", "textColor": Colors.black, "color": const Color(0xffFEEDE2)},
+                              // Add more items as needed
                             ],
                           )),
                         ),
-                        const Padding(
-                          padding: EdgeInsets.only(top: 25,bottom: 20),
-                          child: Text("Quick Access",style: TextStyle(fontWeight: FontWeight.bold)),
+                         Padding(
+                          padding: const EdgeInsets.only(top: 25,bottom: 20),
+                          child: Text(AppLocalizations.of(context)!.quickAccess,style: const TextStyle(fontWeight: FontWeight.bold)),
                         ),
 
                         //quick access listview
                         Padding(
                           padding: const EdgeInsets.only(left: 15),
                           child: Container(height: 100,
-                              child: const QuickAccessList()),
+                              child:  QuickAccessList(
+                                itemList: [
+                                  {"text": AppLocalizations.of(context)!.appointment, "image": "assets/images/appointment.png"},
+                                  {"text": AppLocalizations.of(context)!.consultDoctors, "image": "assets/images/ConsDoctor.png"},
+                                  {"text": AppLocalizations.of(context)!.institute, "image": "assets/images/Institute.png"},
+                                  {"text": AppLocalizations.of(context)!.healthPackage, "image": "assets/images/healthPack.png"},
+                                  // Add more items as needed
+                                ],
+                              )),
                         ),
                         //SizedBox(height: 80,)
                       ],

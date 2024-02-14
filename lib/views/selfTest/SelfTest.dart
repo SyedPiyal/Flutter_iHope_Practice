@@ -7,6 +7,7 @@ import 'package:ihope_practice/common/widget/GridViewWid.dart';
 import 'package:ihope_practice/common/widget/QuickAccessList.dart';
 import 'package:ihope_practice/common/widget/Slider.dart';
 import 'package:ihope_practice/views/language/language.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 
 import '../../common/widget/CustomBottomNavigation.dart';
@@ -56,14 +57,14 @@ class _SelfTest extends State<SelfTest> {
                     //color: Colors.redAccent,
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(left: 20, bottom: 5),
+                 Padding(
+                  padding: const EdgeInsets.only(left: 20, bottom: 5),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Hello", style: TextStyle(fontSize: 14)),
-                      Text("Golam Nobi Aunto",
-                          style: TextStyle(
+                      Text(AppLocalizations.of(context)!.hello, style: const TextStyle(fontSize: 14)),
+                      Text(AppLocalizations.of(context)!.userName,
+                          style: const TextStyle(
                               fontSize: 17, fontWeight: FontWeight.bold))
                     ],
                   ),
@@ -101,10 +102,10 @@ class _SelfTest extends State<SelfTest> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         //search option
-                        SearchFiled(),
+                        const SearchFiled(),
                         //cardview item
                         Padding(
-                          padding: EdgeInsets.only(top: 20,bottom: 20),
+                          padding: const EdgeInsets.only(top: 20,bottom: 20),
                           child: SizedBox(height: 170,child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -138,7 +139,7 @@ class _SelfTest extends State<SelfTest> {
                                               const SizedBox(
                                                 height: 10,
                                               ),
-                                              Text("Upload Prescription",style: TextStyle(color: Color(0xffFFFFFF),fontWeight: FontWeight.bold),)
+                                              Text(AppLocalizations.of(context)!.uploadPrescription,style: const TextStyle(color: Color(0xffFFFFFF),fontWeight: FontWeight.bold),)
 
                                             ],
                                           ),
@@ -164,7 +165,7 @@ class _SelfTest extends State<SelfTest> {
                                         height: 170,
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(14),
-                                          color: Color(0xffCFDFE2),
+                                          color: const Color(0xffCFDFE2),
                                         ),
                                         child:  Padding(
                                           padding: const EdgeInsets.all(12),
@@ -176,7 +177,7 @@ class _SelfTest extends State<SelfTest> {
                                               const SizedBox(
                                                 height: 10,
                                               ),
-                                              Text("All Self Test",style: TextStyle(color: Color(
+                                              Text(AppLocalizations.of(context)!.allSelfTest,style: const TextStyle(color: Color(
                                                   0xff000000),fontWeight: FontWeight.bold),)
 
                                             ],
@@ -184,10 +185,10 @@ class _SelfTest extends State<SelfTest> {
                                         ),
                                       )),onTap: (){
                                   setState(() {
-                                    Navigator.push(
+                                    /*Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => Language()));
+                                            builder: (context) => Language()));*/
                                   });
                                 },
                                 ),
@@ -197,28 +198,37 @@ class _SelfTest extends State<SelfTest> {
                         ),
 
                         //image slider and indicator
+                         SizedBox(
+                            height: 140,child: ImageSlider(
+                          itemList: [
+                            {"name": AppLocalizations.of(context)!.doctorName, "subName": AppLocalizations.of(context)!.designation},
+                            {"name": AppLocalizations.of(context)!.doctorName, "subName": AppLocalizations.of(context)!.designation},
+                            {"name": AppLocalizations.of(context)!.doctorName, "subName": AppLocalizations.of(context)!.designation},
+                            {"name": AppLocalizations.of(context)!.doctorName, "subName": AppLocalizations.of(context)!.designation},
+
+                          ],
+                        )),
                         const SizedBox(
-                            height: 140,child: ImageSlider()),
-                        SizedBox(
                           height: 30,
                         ),
                         Container(
-                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(15),color: Color(0xffCFDFE2)),
-                          child: const Padding(
-                            padding: EdgeInsets.all(7.0),
+                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(15),color: const Color(0xffCFDFE2)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(7.0),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Padding(
+                                const Padding(
                                   padding: EdgeInsets.only(top: 8,left: 8,bottom: 8),
                                   child: Text("New Features",style: TextStyle(fontWeight: FontWeight.bold)),
                                 ),
                                 SizedBox(height: 320,child: GridViewWid(
-                                  colors: [
-                                    Color(0xffffffff),
-                                    Color(0xffffffff),
-                                    Color(0xffffffff),
-                                    Color(0xffffffff),
+                                  itemList: [
+                                    {"text": AppLocalizations.of(context)!.doctor, "image": "assets/images/doctor.png", "textColor": Colors.black, "color": const Color(0xffffffff)},
+                                    {"text": AppLocalizations.of(context)!.ambulance, "image": "assets/images/ambulance.png", "textColor": Colors.black, "color": const Color(0xffffffff)},
+                                    {"text": AppLocalizations.of(context)!.healthCare, "image": "assets/images/health.png", "textColor": Colors.black, "color": const Color(0xffffffff)},
+                                    {"text": AppLocalizations.of(context)!.pharmacy, "image": "assets/images/shop.png", "textColor": Colors.black, "color": const Color(0xffffffff)},
+                                    // Add more items as needed
                                   ],
                                 )),
                               ],
@@ -228,37 +238,53 @@ class _SelfTest extends State<SelfTest> {
                         //self test listview
                         Padding(
                           padding: const EdgeInsets.only(top: 20),
-                          child: Container(height: 460,
-                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(15),color: Color(0xffCFDFE2)),
-                              child: const Column(
+                          child: Container(height: 290,
+                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(15),color: const Color(0xffCFDFE2)),
+                              child:  Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.only(top: 10,left: 15,bottom: 5,right: 20),
+                                    padding: const EdgeInsets.only(top: 10,left: 15,bottom: 5,right: 20),
                                     child: Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text("Self Test",style: TextStyle(fontWeight: FontWeight.bold)),
-                                        Text("Show More",style: TextStyle(fontWeight: FontWeight.bold,color: Color(0xff115F6E),fontSize: 12)),
+                                        Text(AppLocalizations.of(context)!.selfTest,style: const TextStyle(fontWeight: FontWeight.bold)),
+                                        Text(AppLocalizations.of(context)!.showMore,style: const TextStyle(fontWeight: FontWeight.bold,color: Color(0xff115F6E),fontSize: 12)),
                                       ],
                                     ),
                                   ),
-                                  SizedBox(height: 420,child: Padding(
-                                    padding: EdgeInsets.only(left: 10,right: 10),
-                                    child: CustomListView(),
+                                  SizedBox(height: 250,child: Padding(
+                                    padding: const EdgeInsets.only(left: 10,right: 10),
+                                    child: CustomListView(
+                                      itemList: [
+                                        AppLocalizations.of(context)!.sGPT,
+                                        AppLocalizations.of(context)!.alkaline,
+                                        AppLocalizations.of(context)!.tIBC,
+                                        AppLocalizations.of(context)!.cCR,
+                                        // Add more items as needed
+                                      ],
+                                    ),
                                   )),
                                 ],
                               )),
                         ),
                         //quick access listview
-                        const Padding(
-                          padding: EdgeInsets.only(top: 25,bottom: 20),
-                          child: Text("Quick Access",style: TextStyle(fontWeight: FontWeight.bold)),
+                         Padding(
+                          padding: const EdgeInsets.only(top: 25,bottom: 20),
+                          child: Text(AppLocalizations.of(context)!.quickAccess,style: const TextStyle(fontWeight: FontWeight.bold)),
                         ),
 
                         //quick access listview
                         Container(height: 100,
-                            child: const QuickAccessList()),
+                            child: QuickAccessList(
+                              itemList: [
+                                {"text": AppLocalizations.of(context)!.appointment, "image": "assets/images/appointment.png"},
+                                {"text": AppLocalizations.of(context)!.consultDoctors, "image": "assets/images/ConsDoctor.png"},
+                                {"text": AppLocalizations.of(context)!.institute, "image": "assets/images/Institute.png"},
+                                {"text": AppLocalizations.of(context)!.healthPackage, "image": "assets/images/healthPack.png"},
+                                // Add more items as needed
+                              ],
+                            )),
 
                         //for bottom navigation
                         //SizedBox(height: 80,)

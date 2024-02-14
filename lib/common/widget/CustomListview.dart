@@ -1,37 +1,23 @@
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CustomListView extends StatefulWidget {
+  final List<String> itemList;
 
-  const CustomListView({Key? key}) : super(key: key);
+  const CustomListView({Key? key, required this.itemList}) : super(key: key);
 
   @override
   State<CustomListView> createState() => _CustomListView();
-
 }
 
-class _CustomListView extends State<CustomListView>{
-
-  final List _data =
-  [
-    {"text": "SGPT (Alanine Transaminase/ALT)"},
-    {"text": "Alkaline Phosphatase (ALP)"},
-    {"text": "TIBC (Total Iron Binding Capacity)"},
-    {"text": "CCR-24 Hrs Urine (Creatinine Clearance)"},
-    {"text": "eGFR (Epidermal Growth Factor Receptor)"},
-    {"text": "a)Na + b)K + c)Cl - d) TC02"},
-    {"text": "GFR (Glomerular Filtration Rate)"},
-  ];
-
+class _CustomListView extends State<CustomListView> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       physics: const NeverScrollableScrollPhysics(),
       scrollDirection: Axis.vertical,
-      itemCount: _data.length ,
-      itemBuilder: (BuildContext context, int index){
-        final data = _data[index];
+      itemCount: widget.itemList.length,
+      itemBuilder: (BuildContext context, int index) {
+        final text = widget.itemList[index];
         return Material(
           type: MaterialType.transparency,
           elevation: 6.0,
@@ -39,18 +25,23 @@ class _CustomListView extends State<CustomListView>{
           child: InkWell(
             child: Card(
               elevation: 3,
-              child: Container(height: 50,
+              child: Container(
+                height: 55,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.white,
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.only(right: 7,left: 15,top: 12),
-                  child: Text(data["text"],style: TextStyle(fontWeight: FontWeight.bold,),),
+                  padding: const EdgeInsets.only(right: 7, left: 15, top: 12,bottom: 2),
+                  child: Text(
+                    text,
+                    style: TextStyle(fontWeight: FontWeight.bold,),
+                  ),
                 ),
               ),
             ),
-            onTap: (){
+            onTap: () {
+              // Perform actions on tap if needed
             },
           ),
         );

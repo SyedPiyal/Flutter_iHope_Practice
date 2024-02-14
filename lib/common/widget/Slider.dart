@@ -4,19 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class ImageSlider extends StatefulWidget {
-  const ImageSlider({Key? key}) : super(key: key);
+  final List<Map<String, String>> itemList;
+
+  const ImageSlider({Key? key, required this.itemList}) : super(key: key);
 
   @override
   State<ImageSlider> createState() => _ImageSlider();
 }
 
 class _ImageSlider extends State<ImageSlider> {
-  final List<Map<String, String>> myItemsList = [
-    {"name": "Jhon Carter", "subName": "Doctors: Katherine Moss"},
-    {"name": "Jhon Carter", "subName": "Doctors: Katherine Moss"},
-    {"name": "Jhon Carter", "subName": "Doctors: Katherine Moss"},
-    {"name": "Jhon Carter", "subName": "Doctors: Katherine Moss"},
-  ];
 
   int myCurrentIndex = 0;
 
@@ -26,9 +22,9 @@ class _ImageSlider extends State<ImageSlider> {
       children: [
         Expanded(
           child: CarouselSlider.builder(
-            itemCount: myItemsList.length,
+            itemCount: widget.itemList.length,
             itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) {
-              Map<String, String> currentItem = myItemsList[itemIndex];
+              Map<String, String> currentItem = widget.itemList[itemIndex];
 
               return Container(
                 decoration: BoxDecoration(
@@ -122,7 +118,7 @@ class _ImageSlider extends State<ImageSlider> {
             alignment: Alignment.center,
             child: AnimatedSmoothIndicator(
               activeIndex: myCurrentIndex,
-              count: myItemsList.length,
+              count: widget.itemList.length,
               effect: const WormEffect(
                 dotHeight: 8,
                 dotWidth: 8,

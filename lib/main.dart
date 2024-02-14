@@ -1,26 +1,75 @@
+
 import 'package:flutter/material.dart';
-import 'package:ihope_practice/views/home/view.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:ihope_practice/views/language/language.dart';
-import 'package:ihope_practice/views/selfTest/SelfTest.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  @override
+  _MyAppState createState() => _MyAppState();
+
+}
+
+class _MyAppState extends State<MyApp>{
+  Locale _locale = const Locale('en'); // Default locale is English
+
+  Future<void> _loadLocale() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String? languageCode = prefs.getString('languageCode');
+    if (languageCode != null) {
+      setState(() {
+        _locale = Locale(languageCode);
+      });
+    }
+  }
+
+  Future<void> _saveLocale() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('languageCode', _locale.languageCode);
+  }
+
+  Future<void> _toggleLocale() async {
+    setState(() {
+      _locale = _locale.languageCode == 'en' ? const Locale('bn') : const Locale('en');
+    });
+    await _saveLocale();
+  }
+  @override
+  void initState() {
+    super.initState();
+    _loadLocale();
+  }
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      //locale:Locale("bn"),
+      localizationsDelegates:  const [
+        AppLocalizations.delegate, // Add this line
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('en'), // English
+        Locale('bn'), // Spanish
+      ],
+      locale: _locale,
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:   const MyHomePage(title: '',),
+      home: Language(toggleLocale: _toggleLocale),
     );
   }
 }

@@ -1,32 +1,22 @@
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class QuickAccessList extends StatefulWidget{
-  const QuickAccessList({super.key});
+class QuickAccessList extends StatefulWidget {
+  final List<Map<String, String>> itemList;
+
+  const QuickAccessList({Key? key, required this.itemList}) : super(key: key);
 
   @override
   State<QuickAccessList> createState() => _QuickAccessList();
-
 }
 
-class _QuickAccessList extends State<QuickAccessList>{
-
-  final List _data =[
-    {"text": "Appointment","image": "assets/images/appointment.png"},
-    {"text": "Consult Doctors","image": "assets/images/ConsDoctor.png"},
-    {"text": "Institute","image": "assets/images/Institute.png"},
-    {"text": "Health Package","image": "assets/images/healthPack.png"},
-
-  ];
-
+class _QuickAccessList extends State<QuickAccessList> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       physics: const NeverScrollableScrollPhysics(),
-      itemCount: 4,
-      itemBuilder: (BuildContext context, int index){
-        final data = _data[index];
+      itemCount: widget.itemList.length,
+      itemBuilder: (BuildContext context, int index) {
+        final data = widget.itemList[index];
         return Material(
           type: MaterialType.transparency,
           elevation: 6.0,
@@ -34,33 +24,35 @@ class _QuickAccessList extends State<QuickAccessList>{
           child: InkWell(
             child: Padding(
               padding: const EdgeInsets.all(3),
-              child: Column(
-                children: [
-                  Container(
-                    height: 60,
-                    width: 60,
-                    decoration: BoxDecoration(
-                        /*image: DecorationImage(
-                            fit: BoxFit.cover, image: AssetImage(data["image"])),*/
-                      borderRadius: BorderRadius.circular(30),
-                      color: Color(0xff115F6E),
+              child: Expanded(
+                child: Column(
+                  children: [
+                    Container(
+                      height: 50,
+                      width: 50,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(25),
+                        color: Color(0xff115F6E),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(12),
+                        child: Image.asset(data["image"]!),
+                      ),
                     ),
-                    child:  Padding(
-                      padding: const EdgeInsets.all(12),
-                      child: Image.asset(data["image"]),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 7,left: 5),
-                    child: Text(data["text"] ?? "",style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 10),),
-                  )
-                ],
+                    Padding(
+                      padding: const EdgeInsets.only(right: 7, left: 5),
+                      child: Text(
+                        data["text"] ?? "",
+                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 10),
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
-            onTap: (){
+            onTap: () {
               setState(() {
-
-                //_containerColor = Colors.redAccent;
+                // Perform actions on tap if needed
               });
             },
           ),

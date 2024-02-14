@@ -15,7 +15,7 @@ class AnimatedCurvedNavigationBar extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
       child: SizedBox(
-        height: 80,
+        height: 65,
         child: ClipRRect(
           borderRadius: const BorderRadius.all(Radius.circular(35)),
           child: CurvedNavigationBar(
@@ -24,11 +24,11 @@ class AnimatedCurvedNavigationBar extends StatelessWidget {
             backgroundColor: Colors.transparent,
             color: const Color(0xFFCFDFE2), // Button color
             buttonBackgroundColor: const Color(0xFF115F6E), // Button color
-            animationDuration: Duration(milliseconds: 300), // Adjust animation duration
+            animationDuration: const Duration(milliseconds: 300), // Adjust animation duration
 
             items: <Widget>[
               Image.asset("assets/images/home.png", height: 23, width: 23),
-              Icon(Icons.add, size: 30, color: Colors.white),
+              const Icon(Icons.add, size: 25, color: Colors.white),
               Image.asset("assets/images/message.png", height: 23, width: 23),
               Image.asset("assets/images/profileUser.png", height: 23, width: 23),
             ],

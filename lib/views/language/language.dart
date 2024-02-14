@@ -1,6 +1,8 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ihope_practice/common/widget/SearchField.dart';
+import 'package:ihope_practice/views/home/view.dart';
 
 import '../../common/widget/CustomBottomNavigation.dart';
 import '../../common/widget/CustomListview.dart';
@@ -8,9 +10,16 @@ import '../../common/widget/GridViewWid.dart';
 import '../../common/widget/GridviewWidget.dart';
 import '../../common/widget/QuickAccessList.dart';
 import '../../common/widget/Slider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+
+
 
 
 class Language extends StatefulWidget {
+  final VoidCallback toggleLocale;
+
+  const Language({Key? key, required this.toggleLocale}) : super(key: key);
   @override
   _LanguageState createState() => _LanguageState();
 }
@@ -18,6 +27,7 @@ class Language extends StatefulWidget {
 class _LanguageState extends State<Language> {
   int myCurrentIndex = 0; // Initialize the current index based on your requirement
   bool light0 = true;
+
 
 
   @override
@@ -40,7 +50,7 @@ class _LanguageState extends State<Language> {
             child: Column(
               children: [
              Stack(children: [   Container(
-               height: 150, margin: EdgeInsets.only(bottom: 30),
+               height: 150, margin: const EdgeInsets.only(bottom: 30),
                decoration: const BoxDecoration(
                  gradient: LinearGradient(
                    begin: Alignment.bottomCenter,
@@ -52,7 +62,7 @@ class _LanguageState extends State<Language> {
                  ),
                ),
              ),
-               Positioned(bottom:0,left:20,right:20,child: const SearchFiled()),
+               const Positioned(bottom:0,left:20,right:20,child: SearchFiled()),
              Padding(
                padding: const EdgeInsets.only(left: 15,top: 20),
                child: Row(
@@ -75,6 +85,7 @@ class _LanguageState extends State<Language> {
                            onChanged: (bool value) {
                              setState(() {
                                light0 = value;
+                               widget.toggleLocale();
                              });
                            },
                          ),
@@ -119,7 +130,7 @@ class _LanguageState extends State<Language> {
 
                                 //cardview item
                                 Padding(
-                                  padding: EdgeInsets.only(top: 20,bottom: 20),
+                                  padding: const EdgeInsets.only(top: 20,bottom: 20),
                                   child: SizedBox(height: 170,child: Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
@@ -153,17 +164,17 @@ class _LanguageState extends State<Language> {
                                                       const SizedBox(
                                                         height: 10,
                                                       ),
-                                                      Text("Upload Prescription",style: TextStyle(color: Color(0xffFFFFFF),fontWeight: FontWeight.bold),)
+                                                       Text(AppLocalizations.of(context)!.uploadPrescription,style: const TextStyle(color: Color(0xffFFFFFF),fontWeight: FontWeight.bold),)
 
                                                     ],
                                                   ),
                                                 ),
                                               )),onTap: (){
                                           setState(() {
-                                            /*Navigator.push(
+                                            Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => const DetailsActivty()));*/
+                                        builder: (context) => const MyHomePage(title: 'home')));
                                           });
                                         },
                                         ),
@@ -179,7 +190,7 @@ class _LanguageState extends State<Language> {
                                                 height: 170,
                                                 decoration: BoxDecoration(
                                                   borderRadius: BorderRadius.circular(14),
-                                                  color: Color(0xffCFDFE2),
+                                                  color: const Color(0xffCFDFE2),
                                                 ),
                                                 child:  Padding(
                                                   padding: const EdgeInsets.all(12),
@@ -191,7 +202,7 @@ class _LanguageState extends State<Language> {
                                                       const SizedBox(
                                                         height: 10,
                                                       ),
-                                                      Text("All Self Test",style: TextStyle(color: Color(
+                                                       Text(AppLocalizations.of(context)!.allSelfTest,style: const TextStyle(color: Color(
                                                           0xff000000),fontWeight: FontWeight.bold),)
 
                                                     ],
@@ -199,10 +210,10 @@ class _LanguageState extends State<Language> {
                                                 ),
                                               )),onTap: (){
                                           setState(() {
-                                           /* Navigator.push(
+                                            Navigator.push(
                                                 context,
                                                 MaterialPageRoute(
-                                                    builder: (context) => const SelfTest()));*/
+                                                    builder: (context) => const MyHomePage(title: 'Home')));
                                           });
                                         },
                                         ),
@@ -212,28 +223,37 @@ class _LanguageState extends State<Language> {
                                 ),
 
                                 //image slider and indicator
+                                 SizedBox(
+                                    height: 140,child: ImageSlider(
+                                  itemList: [
+                                    {"name": AppLocalizations.of(context)!.doctorName, "subName": AppLocalizations.of(context)!.designation},
+                                    {"name": AppLocalizations.of(context)!.doctorName, "subName": AppLocalizations.of(context)!.designation},
+                                    {"name": AppLocalizations.of(context)!.doctorName, "subName": AppLocalizations.of(context)!.designation},
+                                    {"name": AppLocalizations.of(context)!.doctorName, "subName": AppLocalizations.of(context)!.designation},
+
+                                  ],
+                                )),
                                 const SizedBox(
-                                    height: 140,child: ImageSlider()),
-                                SizedBox(
                                   height: 30,
                                 ),
                                 Container(
-                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(15),color: Color(0xffCFDFE2)),
-                                  child: const Padding(
-                                    padding: EdgeInsets.all(7.0),
+                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(15),color: const Color(0xffCFDFE2)),
+                                  child:  Padding(
+                                    padding: const EdgeInsets.all(7.0),
                                     child: Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Padding(
-                                          padding: EdgeInsets.only(top: 8,left: 8,bottom: 8),
-                                          child: Text("New Features",style: TextStyle(fontWeight: FontWeight.bold)),
+                                          padding: const EdgeInsets.only(top: 8,left: 8,bottom: 8),
+                                          child: Text(AppLocalizations.of(context)!.features,style: const TextStyle(fontWeight: FontWeight.bold)),
                                         ),
-                                        SizedBox(height: 320,child: GridViewWid(
-                                          colors: [
-                                            Color(0xffffffff),
-                                            Color(0xffffffff),
-                                            Color(0xffffffff),
-                                            Color(0xffffffff),
+                                         SizedBox(height: 320,child: GridViewWid(
+                                          itemList: [
+                                            {"text": AppLocalizations.of(context)!.doctor, "image": "assets/images/doctor.png", "textColor": Colors.black, "color": const Color(0xffffffff)},
+                                            {"text": AppLocalizations.of(context)!.ambulance, "image": "assets/images/ambulance.png", "textColor": Colors.black, "color": const Color(0xffffffff)},
+                                            {"text": AppLocalizations.of(context)!.healthCare, "image": "assets/images/health.png", "textColor": Colors.black, "color": const Color(0xffffffff)},
+                                            {"text": AppLocalizations.of(context)!.pharmacy, "image": "assets/images/shop.png", "textColor": Colors.black, "color": const Color(0xffffffff)},
+                                            // Add more items as needed
                                           ],
                                         )),
                                       ],
@@ -243,37 +263,53 @@ class _LanguageState extends State<Language> {
                                 //self test listview
                                 Padding(
                                   padding: const EdgeInsets.only(top: 20),
-                                  child: Container(height: 460,
-                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(15),color: Color(0xffCFDFE2)),
-                                      child: const Column(
+                                  child: Container(height: 300,
+                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(15),color: const Color(0xffCFDFE2)),
+                                      child:  Column(
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           Padding(
-                                            padding: EdgeInsets.only(top: 10,left: 15,bottom: 5,right: 20),
+                                            padding: const EdgeInsets.only(top: 10,left: 15,bottom: 5,right: 20),
                                             child: Row(
                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: [
-                                                Text("Self Test",style: TextStyle(fontWeight: FontWeight.bold)),
-                                                Text("Show More",style: TextStyle(fontWeight: FontWeight.bold,color: Color(0xff115F6E),fontSize: 12)),
+                                                Text(AppLocalizations.of(context)!.selfTest,style: const TextStyle(fontWeight: FontWeight.bold)),
+                                                Text(AppLocalizations.of(context)!.showMore,style: const TextStyle(fontWeight: FontWeight.bold,color: Color(0xff115F6E),fontSize: 12)),
                                               ],
                                             ),
                                           ),
-                                          SizedBox(height: 420,child: Padding(
-                                            padding: EdgeInsets.only(left: 10,right: 10),
-                                            child: CustomListView(),
+                                           SizedBox(height: 250,child: Padding(
+                                            padding: const EdgeInsets.only(left: 10,right: 10),
+                                            child: CustomListView(
+                                              itemList: [
+                                                AppLocalizations.of(context)!.sGPT,
+                                                AppLocalizations.of(context)!.alkaline,
+                                                AppLocalizations.of(context)!.tIBC,
+                                                AppLocalizations.of(context)!.cCR,
+                                                // Add more items as needed
+                                              ],
+                                            ),
                                           )),
                                         ],
                                       )),
                                 ),
                                 //quick access listview
-                                const Padding(
-                                  padding: EdgeInsets.only(top: 25,bottom: 20),
-                                  child: Text("Quick Access",style: TextStyle(fontWeight: FontWeight.bold)),
+                                 Padding(
+                                  padding: const EdgeInsets.only(top: 25,bottom: 20),
+                                  child: Text(AppLocalizations.of(context)!.quickAccess,style: const TextStyle(fontWeight: FontWeight.bold)),
                                 ),
 
                                 //quick access listview
                                 Container(height: 100,
-                                    child: const QuickAccessList()),
+                                    child:  QuickAccessList(
+                                      itemList: [
+                                        {"text": AppLocalizations.of(context)!.appointment, "image": "assets/images/appointment.png"},
+                                        {"text": AppLocalizations.of(context)!.consultDoctors, "image": "assets/images/ConsDoctor.png"},
+                                        {"text": AppLocalizations.of(context)!.institute, "image": "assets/images/Institute.png"},
+                                        {"text": AppLocalizations.of(context)!.healthPackage, "image": "assets/images/healthPack.png"},
+                                        // Add more items as needed
+                                      ],
+                                    )),
 
                                 //for bottom navigation
                                 //SizedBox(height: 80,)
