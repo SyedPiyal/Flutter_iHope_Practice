@@ -15,7 +15,7 @@ class AnimatedCurvedNavigationBar extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
       child: SizedBox(
-        height: 65,
+        height: 68,
         child: ClipRRect(
           borderRadius: const BorderRadius.all(Radius.circular(35)),
           child: CurvedNavigationBar(

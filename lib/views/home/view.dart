@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ihope_practice/common/widget/SearchField.dart';
 import 'package:ihope_practice/common/widget/GridViewWid.dart';
-import 'package:ihope_practice/common/widget/GridviewWidget.dart';
 import 'package:ihope_practice/common/widget/QuickAccessList.dart';
 import 'package:ihope_practice/common/widget/Slider.dart';
 import 'package:ihope_practice/views/selfTest/SelfTest.dart';
@@ -105,7 +104,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         //search option
-                        const SearchFiled(),
+                        SearchFiled(
+                          hintTxt: AppLocalizations.of(context)!.search,
+                        ),
                         //cardview item
                          Padding(
                           padding: const EdgeInsets.only(top: 20,bottom: 20),
@@ -234,13 +235,20 @@ class _MyHomePageState extends State<MyHomePage> {
                         Padding(
                           padding: const EdgeInsets.only(left: 15),
                           child: Container(height: 100,
-                              child:  QuickAccessList(
-                                itemList: [
-                                  {"text": AppLocalizations.of(context)!.appointment, "image": "assets/images/appointment.png"},
-                                  {"text": AppLocalizations.of(context)!.consultDoctors, "image": "assets/images/ConsDoctor.png"},
-                                  {"text": AppLocalizations.of(context)!.institute, "image": "assets/images/Institute.png"},
-                                  {"text": AppLocalizations.of(context)!.healthPackage, "image": "assets/images/healthPack.png"},
-                                  // Add more items as needed
+                              child:  Row(
+                                children: [
+                                  Expanded(child: QuickAccessList(image: "assets/images/appointment.png", text: AppLocalizations.of(context)!.appointment,)),
+                                  Expanded(child: QuickAccessList(image: "assets/images/ConsDoctor.png", text: AppLocalizations.of(context)!.consultDoctors,)),
+                                  Expanded(child: QuickAccessList(image: "assets/images/Institute.png", text: AppLocalizations.of(context)!.institute,)),
+                                  Expanded(child: QuickAccessList(image: "assets/images/healthPack.png", text: AppLocalizations.of(context)!.healthPackage,)),
+                                  /*itemList: [
+                                      {"text": AppLocalizations.of(context)!.appointment, "image": "assets/images/appointment.png"},
+                                      {"text": AppLocalizations.of(context)!.consultDoctors, "image": "assets/images/ConsDoctor.png"},
+                                      {"text": AppLocalizations.of(context)!.institute, "image": "assets/images/Institute.png"},
+                                      {"text": AppLocalizations.of(context)!.healthPackage, "image": "assets/images/healthPack.png"},
+                                      // Add more items as needed
+                                    ],*/
+
                                 ],
                               )),
                         ),

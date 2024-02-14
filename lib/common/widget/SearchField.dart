@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 
 class SearchFiled extends StatefulWidget {
 
-  const SearchFiled({Key? key}) : super(key: key);
+  final String hintTxt;
+  const SearchFiled({Key? key, required this.hintTxt}) : super(key: key);
 
   @override
   State<SearchFiled> createState() => _SearchFiled();
@@ -23,7 +24,7 @@ class _SearchFiled extends State<SearchFiled>{
             prefixIcon: const Icon(Icons.search),
             labelStyle:TextStyle(fontSize:12),
             hintStyle: TextStyle(fontSize:12),
-            hintText: 'Search a doctor or health issue',
+            hintText: widget.hintTxt,
             filled: true,
             fillColor: const Color(0xFFCFDFE2),
             enabledBorder: OutlineInputBorder(

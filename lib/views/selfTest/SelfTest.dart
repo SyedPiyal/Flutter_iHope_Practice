@@ -102,7 +102,9 @@ class _SelfTest extends State<SelfTest> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         //search option
-                        const SearchFiled(),
+                        SearchFiled(
+                          hintTxt: AppLocalizations.of(context)!.search,
+                        ),
                         //cardview item
                         Padding(
                           padding: const EdgeInsets.only(top: 20,bottom: 20),
@@ -238,7 +240,7 @@ class _SelfTest extends State<SelfTest> {
                         //self test listview
                         Padding(
                           padding: const EdgeInsets.only(top: 20),
-                          child: Container(height: 290,
+                          child: Container(height: 305,
                               decoration: BoxDecoration(borderRadius: BorderRadius.circular(15),color: const Color(0xffCFDFE2)),
                               child:  Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -276,13 +278,20 @@ class _SelfTest extends State<SelfTest> {
 
                         //quick access listview
                         Container(height: 100,
-                            child: QuickAccessList(
-                              itemList: [
-                                {"text": AppLocalizations.of(context)!.appointment, "image": "assets/images/appointment.png"},
-                                {"text": AppLocalizations.of(context)!.consultDoctors, "image": "assets/images/ConsDoctor.png"},
-                                {"text": AppLocalizations.of(context)!.institute, "image": "assets/images/Institute.png"},
-                                {"text": AppLocalizations.of(context)!.healthPackage, "image": "assets/images/healthPack.png"},
-                                // Add more items as needed
+                            child:  Row(
+                              children: [
+                                Expanded(child: QuickAccessList(image: "assets/images/appointment.png", text: AppLocalizations.of(context)!.appointment,)),
+                                Expanded(child: QuickAccessList(image: "assets/images/ConsDoctor.png", text: AppLocalizations.of(context)!.consultDoctors,)),
+                                Expanded(child: QuickAccessList(image: "assets/images/Institute.png", text: AppLocalizations.of(context)!.institute,)),
+                                Expanded(child: QuickAccessList(image: "assets/images/healthPack.png", text: AppLocalizations.of(context)!.healthPackage,)),
+                                /*itemList: [
+                                      {"text": AppLocalizations.of(context)!.appointment, "image": "assets/images/appointment.png"},
+                                      {"text": AppLocalizations.of(context)!.consultDoctors, "image": "assets/images/ConsDoctor.png"},
+                                      {"text": AppLocalizations.of(context)!.institute, "image": "assets/images/Institute.png"},
+                                      {"text": AppLocalizations.of(context)!.healthPackage, "image": "assets/images/healthPack.png"},
+                                      // Add more items as needed
+                                    ],*/
+
                               ],
                             )),
 
