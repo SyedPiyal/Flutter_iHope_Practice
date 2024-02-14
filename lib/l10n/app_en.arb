@@ -23,5 +23,8 @@
     "appointment" : "Appointment",
     "consultDoctors" : "Consult Doctors",
     "institute" : "Institute",
-    "healthPackage" : "Health Package"
+    "healthPackage" : "Health Package",
+    "all" : "All",
+    "upload": "Upload",
+    "prescription": "Prescription"
   }

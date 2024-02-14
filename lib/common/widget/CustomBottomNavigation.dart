@@ -13,8 +13,9 @@ class AnimatedCurvedNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
-      child: SizedBox(
+      padding: const EdgeInsets.only(left: 10, right: 10),
+      child: Container(
+        color: Colors.white70,
         height: 68,
         child: ClipRRect(
           borderRadius: const BorderRadius.all(Radius.circular(35)),

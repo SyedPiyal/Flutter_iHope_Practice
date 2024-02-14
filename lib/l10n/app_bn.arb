@@ -23,5 +23,8 @@
     "appointment" : "নিয়োগ",
     "consultDoctors" : "চিকিৎসকদের পরামর্শ নিন",
     "institute" : "ইনস্টিটিউট",
-    "healthPackage" : "স্বাস্থ্য প্যাকেজ"
+    "healthPackage" : "স্বাস্থ্য প্যাকেজ",
+    "all" : "সমস্ত",
+    "upload": "আপলোড করুন",
+    "prescription": "প্রেসক্রিপশন"
   }
