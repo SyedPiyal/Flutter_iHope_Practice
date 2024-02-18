@@ -20,28 +20,37 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp>{
   Locale _locale = const Locale('en'); // Default locale is English
+  //bool light0 = true; // Default switch state
 
   Future<void> _loadLocale() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final String? languageCode = prefs.getString('languageCode');
+    //final bool switchState = prefs.getBool('switchState') ?? true;
+
     if (languageCode != null) {
       setState(() {
         _locale = Locale(languageCode);
+        //light0 = switchState ?? true; // Use the default value if switchState is null
       });
     }
   }
 
+
   Future<void> _saveLocale() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString('languageCode', _locale.languageCode);
+    //await prefs.setBool('switchState', light0);
   }
+
 
   Future<void> _toggleLocale() async {
     setState(() {
       _locale = _locale.languageCode == 'en' ? const Locale('bn') : const Locale('en');
+      //light0 = !_locale.languageCode.contains('en');
     });
     await _saveLocale();
   }
+
   @override
   void initState() {
     super.initState();

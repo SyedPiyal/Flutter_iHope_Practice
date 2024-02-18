@@ -8,7 +8,8 @@ class HomeScreenCardWidget extends StatelessWidget {
   final String image;
   final List<Color> backgroundColors;
   final TextStyle titleStyle;
-  const HomeScreenCardWidget({super.key, required this.title1, required this.title2, required this.image, required this.backgroundColors, required this.titleStyle});
+  final VoidCallback onTap;
+  const HomeScreenCardWidget({super.key, required this.title1, required this.title2, required this.image, required this.backgroundColors, required this.titleStyle, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -19,12 +20,7 @@ class HomeScreenCardWidget extends StatelessWidget {
       borderRadius: BorderRadius.circular(14),
       child: InkWell(
         borderRadius: BorderRadius.circular(14),
-        onTap: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const MyHomePage(title: 'home')));
-        },
+        onTap: onTap,
         child: Card(
           elevation: 6,
           shape: RoundedRectangleBorder(

@@ -14,11 +14,10 @@ class _GridView extends State<GridViewWid> {
   Widget build(BuildContext context) {
     return GridView.builder(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        childAspectRatio: 1,
-        crossAxisSpacing: 4,
-        mainAxisSpacing: 4
-      ),
+          crossAxisCount: 2,
+          childAspectRatio: 1,
+          crossAxisSpacing: 4,
+          mainAxisSpacing: 4),
       physics: const NeverScrollableScrollPhysics(),
       padding: const EdgeInsets.symmetric(vertical: 8),
       itemCount: widget.itemList.length,
@@ -26,12 +25,7 @@ class _GridView extends State<GridViewWid> {
         final data = widget.itemList[index];
         final Color color = data["color"] ?? Colors.transparent;
         return InkWell(
-          onTap: () {
-            /*Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const SelfTest()));*/
-          },
+          onTap: () {},
           child: Card(
             child: Container(
               decoration: BoxDecoration(
@@ -64,52 +58,5 @@ class _GridView extends State<GridViewWid> {
         );
       },
     );
-    // return GridView.count(
-    //   crossAxisSpacing: 10,
-    //   physics: const NeverScrollableScrollPhysics(),
-    //   crossAxisCount: 2,
-    //   children: List.generate(widget.itemList.length, (index) {
-    //     final data = widget.itemList[index];
-    //     final Color color = data["color"] ?? Colors.transparent;
-    //
-    //     return InkWell(
-    //       onTap: () {
-    //         /*Navigator.push(
-    //                             context,
-    //                             MaterialPageRoute(
-    //                                 builder: (context) => const SelfTest()));*/
-    //       },
-    //       child: Card(
-    //         child: Container(
-    //           decoration: BoxDecoration(
-    //             borderRadius: BorderRadius.circular(14),
-    //             color: color,
-    //           ),
-    //           padding: const EdgeInsets.all(12),
-    //           child: Column(
-    //             crossAxisAlignment: CrossAxisAlignment.start,
-    //             children: [
-    //               Image.asset(data["image"], width: 30, height: 30),
-    //               const SizedBox(
-    //                 height: 10,
-    //               ),
-    //               Text(
-    //                 data["text"],
-    //                 style: TextStyle(
-    //                   color: data["textColor"],
-    //                   fontWeight: FontWeight.bold,
-    //                 ),
-    //               ),
-    //               const Text(
-    //                 "Lorem Ipsum is simply & dummy text of the...",
-    //                 style: TextStyle(fontSize: 13),
-    //               )
-    //             ],
-    //           ),
-    //         ),
-    //       ),
-    //     );
-    //   }),
-    // );
   }
 }
