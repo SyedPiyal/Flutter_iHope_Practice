@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:ihope_practice/views/home_3/widget/home3_body.dart';
-import '../../common/widget/CustomBottomNavigation.dart';
 
 class HomePageState extends StatefulWidget {
   const HomePageState({super.key});
@@ -77,14 +76,6 @@ class _HomePageState extends State<HomePageState> {
             ],
           ),
         ),
-      ),
-      bottomNavigationBar: AnimatedCurvedNavigationBar(
-        currentIndex: myCurrentIndex,
-        onTap: (index) {
-          setState(() {
-            myCurrentIndex = index;
-          });
-        },
       ),
     );
   }

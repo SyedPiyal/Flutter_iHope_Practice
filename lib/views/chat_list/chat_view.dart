@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ihope_practice/views/chat_list/widget/chatList_screen_listview_widget.dart';
+import 'package:ihope_practice/views/chat_list/widget/chatList_search_widget.dart';
 
-import '../../common/widget/CustomBottomNavigation.dart';
-import '../../common/widget/SearchField.dart';
 
 class ChatPage extends StatefulWidget {
   const ChatPage({super.key});
@@ -13,59 +12,149 @@ class ChatPage extends StatefulWidget {
 
 class _ChatPageState extends State<ChatPage> {
   int myCurrentIndex = 0;
+  TextEditingController searchController = TextEditingController();
+
+  //----->
+  //data for the list view
+  //----->
+  List<Map<String, String>> allChatList = [
+    {
+      "name": "Yousuf",
+      "message": "Hi ! How Are You?",
+      "time": "12.10 PM",
+      "unread": "1",
+      "image": "assets/images/profile1.png",
+    },
+    {
+      "name": "Samir",
+      "message": "Hey ! How Are You?",
+      "time": "5.10 PM",
+      "unread": "2",
+      "image": "assets/images/iv_user.jpg",
+    },
+    {
+      "name": "Rahim",
+      "message": "Call me asap!!",
+      "time": "8.10 PM",
+      "unread": "4",
+      "image": "assets/images/iv_user1.jpg",
+    },
+    {
+      "name": "Joseph",
+      "message": "Free?",
+      "time": "12.10 PM",
+      "unread": "2",
+      "image": "assets/images/iv_user2.jpg",
+    },
+    {
+      "name": "Kabir",
+      "message": "How Are You?",
+      "time": "12.10 AM",
+      "unread": "1",
+      "image": "assets/images/iv_user3.jpg",
+    },
+    {
+      "name": "Yousuf",
+      "message": "Hi ! How Are You?",
+      "time": "12.10 PM",
+      "unread": "1",
+      "image": "assets/images/profile1.png",
+    },
+    {
+      "name": "Samir",
+      "message": "Hey ! How Are You?",
+      "time": "5.10 PM",
+      "unread": "2",
+      "image": "assets/images/iv_user.jpg",
+    },
+    {
+      "name": "Rahim Ahmed Khan",
+      "message": "Call me asap!!",
+      "time": "8.10 PM",
+      "unread": "4",
+      "image": "assets/images/iv_user1.jpg",
+    },
+    {
+      "name": "Joseph",
+      "message": "Free?",
+      "time": "12.10 PM",
+      "unread": "2",
+      "image": "assets/images/iv_user2.jpg",
+    },
+    {
+      "name": "Kabir",
+      "message": "How Are You?",
+      "time": "12.10 AM",
+      "unread": "1",
+      "image": "assets/images/iv_user3.jpg",
+    }
+
+  ];
+
+  List<Map<String, String>> filteredChatList = [];
+
+  @override
+  void initState() {
+    super.initState();
+    filteredChatList = allChatList;
+    searchController.addListener(() {
+      filterSearchResults(searchController.text);
+    });
+  }
+
+  //----->
+  //search function
+  //----->
+  void filterSearchResults(String query) {
+    List<Map<String, String>> searchResults = [];
+    if (query.isNotEmpty) {
+      searchResults = allChatList.where((chat) =>
+      chat['name']!.toLowerCase().contains(query.toLowerCase()) ||
+          chat['message']!.toLowerCase().contains(query.toLowerCase()) ||
+          chat['time']!.toLowerCase().contains(query.toLowerCase())).toList();
+    } else {
+      searchResults = allChatList;
+    }
+
+    setState(() {
+      filteredChatList = searchResults;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(50.0),
-                bottomRight: Radius.circular(50.0))
+        //----->
+        //changing app back button color
+        //----->
+        iconTheme: const IconThemeData(
+          color: Colors.white, //change color here
         ),
-        centerTitle: true,
-        elevation: 0,
-        title: const Row(
-          children: [
 
-            CircleAvatar(
-              radius: 20,
-              backgroundImage: AssetImage("assets/images/profile1.png"),
+        title: const Text('Chat',style: TextStyle(color: Colors.white)),
+
+        //----->
+        //for changing app bar shape and color
+        //----->
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.bottomCenter,
+              end: Alignment.topCenter,
+              colors: [
+                Color(0xff237B86),
+                Color(0xff02485B),
+              ],
             ),
-            Padding(
-              padding: EdgeInsets.only(left: 20, bottom: 5),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("Rafiq", style: TextStyle(fontSize: 14)),
-                  Text("online",
-                      style:
-                          TextStyle(fontSize: 17, fontWeight: FontWeight.bold))
-                ],
-              ),
-            ),
-          ],
+          ),
         ),
-        actions: [
-          Padding(
-              padding: const EdgeInsets.only(right: 20),
-              child: InkWell(
-                onTap: () {},
-                child: Image.asset(
-                  "assets/images/notification.png",
-                  height: 25,
-                  width: 25,
-                ),
-              ))
-        ],
+
       ),
-
-      //body
       body: SafeArea(
         child: Container(
           width: double.infinity,
           height: double.infinity,
-          //decoration , using image for app background in full screen.......->
           decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage('assets/images/background.png'),
@@ -74,22 +163,30 @@ class _ChatPageState extends State<ChatPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              //search option----->
               Expanded(
                 child: SingleChildScrollView(
                   child: Padding(
-                    padding: const EdgeInsets.all(16.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 30),
                     child: Column(
                       children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            const SizedBox(
+                            //----->
+                            //search field
+                            //----->
+                             SizedBox(
                               width: 270,
-                              child: SearchFiled(
+                              child: ChatSearchField(
                                 hintTxt: "Search Message",
+                                controller: searchController,
                               ),
                             ),
+
+                            //----->
+                            //edit icon
+                            //----->
+
                             Container(
                               height: 44,
                               width: 44,
@@ -103,44 +200,12 @@ class _ChatPageState extends State<ChatPage> {
                             ),
                           ],
                         ),
-                        const ChatlistViewWidget(
-                          itemList: [
-                            {
-                              "name": "Yousuf",
-                              "message": "Hi ! How Are You?",
-                              "time": "12.10 PM",
-                              "unread": "1",
-                              "image": "assets/images/profile1.png",
-                            },
-                            {
-                              "name": "Yousuf",
-                              "message": "Hi ! How Are You?",
-                              "time": "12.10 PM",
-                              "unread": "1",
-                              "image": "assets/images/profile1.png",
-                            },
-                            {
-                              "name": "Yousuf",
-                              "message": "Hi ! How Are You?",
-                              "time": "12.10 PM",
-                              "unread": "1",
-                              "image": "assets/images/profile1.png",
-                            },
-                            {
-                              "name": "Yousuf",
-                              "message": "Hi ! How Are You?",
-                              "time": "12.10 PM",
-                              "unread": "1",
-                              "image": "assets/images/profile1.png",
-                            },
-                            {
-                              "name": "Yousuf",
-                              "message": "Hi ! How Are You?",
-                              "time": "12.10 PM",
-                              "unread": "1",
-                              "image": "assets/images/profile1.png",
-                            }
-                          ],
+
+                         //----->
+                         //chat listview
+                         //----->
+                         ChatlistViewWidget(
+                          itemList: filteredChatList,
                         ),
                       ],
                     ),
@@ -151,15 +216,6 @@ class _ChatPageState extends State<ChatPage> {
           ),
         ),
       ),
-      bottomNavigationBar: AnimatedCurvedNavigationBar(
-        currentIndex: myCurrentIndex,
-        onTap: (index) {
-          setState(() {
-            myCurrentIndex = index;
-          });
-        },
-      ),
-      // Use the EndDrawerWidget
     );
   }
 }

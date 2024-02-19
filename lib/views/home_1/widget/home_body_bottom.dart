@@ -1,140 +1,237 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import '../../../common/widget/SearchField.dart';
+import '../../../common/widget/home_quick_access_lisview_widget.dart';
+import '../../../common/widget/home_screen_card_widget.dart';
+import '../../../common/widget/home_screen_gridview_widget.dart';
+import '../../../common/widget/home_screen_listview_widget.dart';
+import '../../../common/widget/home_screen_slider_widget.dart';
+import '../../home_2/home2_view.dart';
 
-class HomeBodyTop extends StatefulWidget {
-  const HomeBodyTop({super.key, required this.toggleLocale});
-
-  final VoidCallback toggleLocale;
+class HomeBodyBottom extends StatefulWidget {
+  const HomeBodyBottom({super.key});
 
   @override
-  State<HomeBodyTop> createState() => _HomeBodyTop();
+  State<HomeBodyBottom> createState() => _HomeBodyBottom();
 }
 
-class _HomeBodyTop extends State<HomeBodyTop> {
-  int myCurrentIndex =
-  0; // Initialize the current index based on your requirement
-  bool light0 = true;
-
+class _HomeBodyBottom extends State<HomeBodyBottom> {
   @override
   Widget build(BuildContext context) {
     final localization = AppLocalizations.of(context);
-    return Stack(
-      children: [
-
-
-        //----->
-        //top background image
-        //----->
-        Container(
-          height: 150,
-          margin: const EdgeInsets.only(bottom: 30),
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.bottomCenter,
-              end: Alignment.topCenter,
-              colors: [
-                Color(0xff237B86),
-                Color(0xff02485B),
-              ],
-            ),
-          ),
-        ),
-
-
-
-        //search filed---->
-        Positioned(
-            bottom: 05,
-            left: 20,
-            right: 20,
-            child: SearchFiled(
-              hintTxt: localization!.search,
-            )),
-
-
-
-        //top icon and settings------>
-        Padding(
-          padding: const EdgeInsets.only(left: 15, top: 20),
-          child: Row(
+    return Expanded(
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.only(
+              left: 16, right: 16, top: 4, bottom: 80),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.asset(
-                "assets/images/ihope.png",
-                height: 80,
-                width: 80,
+              // card view ---->
+              Padding(
+                padding: const EdgeInsets.only(top: 20, bottom: 20),
+                child: SizedBox(
+                    height: 170,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: HomeScreenCardWidget(
+                            onTap: () {},
+                            title1: localization!.upload,
+                            title2: localization.prescription,
+                            backgroundColors: const [
+                              Color(0xff237B86),
+                              Color(0xff02485B),
+                            ],
+                            titleStyle: const TextStyle(
+                                color: Color(0xffFFFFFF),
+                                fontWeight: FontWeight.bold),
+                            image: "assets/images/upload.png",
+                          ),
+                        ),
+                        Expanded(
+                          child: HomeScreenCardWidget(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                        const MyHomePage(
+                                            title: 'home')));
+                              },
+                              title1: localization.all,
+                              title2: localization.selfTest,
+                              backgroundColors: const [
+                                Color(0xffCFDFE2),
+                                Color(0xffCFDFE2),
+                              ],
+                              titleStyle: const TextStyle(
+                                  color: Color(0xff000000),
+                                  fontWeight: FontWeight.bold),
+                              image: "assets/images/test.png"),
+                        ),
+                      ],
+                    )),
+              ),
+
+              //image slider and indicator --->
+              SizedBox(
+                height: 140,
+                child: ImageSlider(
+                  itemList: [
+                    {
+                      "name": localization.doctorName,
+                      "subName": localization.designation
+                    },
+                    {
+                      "name": localization.doctorName,
+                      "subName": localization.designation
+                    },
+                    {
+                      "name": localization.doctorName,
+                      "subName": localization.designation
+                    },
+                    {
+                      "name": localization.doctorName,
+                      "subName": localization.designation
+                    },
+                  ],
+                ),
               ),
               const SizedBox(
-                width: 75,
+                height: 30,
               ),
-              Text(
-                "BN",
-                style: light0
-                    ? const TextStyle(
-                  color: Colors.white70,
-                )
-                    : const TextStyle(color: Colors.white),
-              ),
-
-              //----->
-              //Switch for language change
-              //----->
-              Padding(
-                padding: const EdgeInsets.only(left: 9, right: 9),
-                child: SizedBox(
-                  width: 20,
-                  child: Transform.scale(
-                    scale: .6,
-                    child: Switch(
-                      activeColor: Colors.white,
-                      value: light0,
-                      onChanged: (bool value) {
-                        setState(() {
-                          light0 = value;
-                          widget.toggleLocale();
-                        });
-                      },
-                    ),
+              //Features Gridview------->
+              Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: const Color(0xffCFDFE2)),
+                child: Padding(
+                  padding: const EdgeInsets.all(15),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(AppLocalizations.of(context)!.features,
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold)),
+                      SizedBox(
+                        height: 300,
+                        child: GridViewWid(
+                          itemList: [
+                            {
+                              "text": localization.doctor,
+                              "image": "assets/images/doctor.png",
+                              "textColor": Colors.black,
+                              "color": const Color(0xffffffff)
+                            },
+                            {
+                              "text": localization.ambulance,
+                              "image": "assets/images/ambulance.png",
+                              "textColor": Colors.black,
+                              "color": const Color(0xffffffff)
+                            },
+                            {
+                              "text": localization.healthCare,
+                              "image": "assets/images/health.png",
+                              "textColor": Colors.black,
+                              "color": const Color(0xffffffff)
+                            },
+                            {
+                              "text": localization.pharmacy,
+                              "image": "assets/images/shop.png",
+                              "textColor": Colors.black,
+                              "color": const Color(0xffffffff)
+                            },
+                            // Add more items as needed
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
 
-
-              Text(
-                "EN",
-                style: light0
-                    ? const TextStyle(color: Colors.white)
-                    : const TextStyle(color: Colors.white70),
-              ),
-
-
-              const SizedBox(
-                width: 10,
-              ),
-              Image.asset(
-                "assets/images/bell.png",
-                height: 25,
-                width: 25,
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-
+              //self test listview-------->
               Container(
-                width: 50.0,
-                height: 50.0,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: AssetImage("assets/images/profile1.png")),
-                  borderRadius: BorderRadius.all(Radius.circular(25)),
+                  margin: const EdgeInsets.only(top: 20),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: const Color(0xffCFDFE2)),
+                  padding: const EdgeInsets.all(12),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment:
+                        MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(localization.selfTest,
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold)),
+                          Text(localization.showMore,
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xff115F6E),
+                                  fontSize: 12)),
+                        ],
+                      ),
+                      CustomListView(
+                        itemList: [
+                          localization.sGPT,
+                          localization.alkaline,
+                          localization.tIBC,
+                          localization.cCR,
+                          // Add more items as needed
+                        ],
+                      ),
+                    ],
+                  )),
+              //quick access listview------>
+              Padding(
+                padding: const EdgeInsets.only(top: 25, bottom: 20),
+                child: Text(AppLocalizations.of(context)!.quickAccess,
+                    style:
+                    const TextStyle(fontWeight: FontWeight.bold)),
+              ),
+
+              //quick access listview------>
+              SizedBox(
+                height: 100,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: QuickAccessList(
+                        image: "assets/images/appointment.png",
+                        text: localization.appointment,
+                      ),
+                    ),
+                    Expanded(
+                      child: QuickAccessList(
+                        image: "assets/images/ConsDoctor.png",
+                        text: AppLocalizations.of(context)!
+                            .consultDoctors,
+                      ),
+                    ),
+                    Expanded(
+                      child: QuickAccessList(
+                        image: "assets/images/Institute.png",
+                        text: localization.institute,
+                      ),
+                    ),
+                    Expanded(
+                      child: QuickAccessList(
+                        image: "assets/images/healthPack.png",
+                        text: localization.healthPackage,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
           ),
-        )
-
-      ],
+        ),
+      ),
     );
   }
 }

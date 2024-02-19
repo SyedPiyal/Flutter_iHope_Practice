@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../../../common/widget/CustomListview.dart';
-import '../../../common/widget/GridViewWid.dart';
-import '../../../common/widget/QuickAccessList.dart';
-import '../../../common/widget/SearchField.dart';
-import '../../../common/widget/Slider.dart';
+import '../../../common/widget/home_screen_listview_widget.dart';
+import '../../../common/widget/home_screen_gridview_widget.dart';
+import '../../../common/widget/home_quick_access_lisview_widget.dart';
+import '../../../common/widget/home_screen_search_widget.dart';
+import '../../../common/widget/home_screen_slider_widget.dart';
 import '../../../common/widget/home_screen_card_widget.dart';
 import '../../chat_list/chat_view.dart';
 

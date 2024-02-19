@@ -26,7 +26,7 @@ class _QuickAccessList extends State<QuickAccessList> {
               width: 50,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(25),
-                color: Color(0xff115F6E),
+                color: const Color(0xff115F6E),
               ),
               child: Padding(
                 padding: const EdgeInsets.all(12),

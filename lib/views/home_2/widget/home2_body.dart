@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import '../../../common/widget/SearchField.dart';
-import 'package:ihope_practice/common/widget/GridViewWid.dart';
-import 'package:ihope_practice/common/widget/QuickAccessList.dart';
-import 'package:ihope_practice/common/widget/Slider.dart';
+import '../../../common/widget/home_screen_search_widget.dart';
+import 'package:ihope_practice/common/widget/home_screen_gridview_widget.dart';
+import 'package:ihope_practice/common/widget/home_quick_access_lisview_widget.dart';
+import 'package:ihope_practice/common/widget/home_screen_slider_widget.dart';
 import 'package:ihope_practice/views/home_3/home3_view.dart';
 
 import '../../../common/widget/home_screen_card_widget.dart';

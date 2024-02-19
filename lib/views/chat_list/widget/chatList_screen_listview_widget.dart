@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../user_chat/user_chat_view.dart';
+
 class ChatlistViewWidget extends StatefulWidget {
   final List<Map<String, dynamic>> itemList;
 
@@ -25,42 +27,68 @@ class _ChatlistViewWidget extends State<ChatlistViewWidget> {
           child: Card(
             elevation: 0,
             child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.white,
+              ),
+              padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 13),
+              alignment: Alignment.centerLeft,
+              child: Row(
+                children: [
+
+                  //profile image
+                  CircleAvatar(
+                    radius: 25,
+                    backgroundImage: AssetImage(data["image"],),
+                  ),
 
 
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.white,
-                ),
-                padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 13),
-                alignment: Alignment.centerLeft,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    ClipRRect(
-                        borderRadius: BorderRadius.circular(25),
-                        child: Image.asset(
-                          data["image"],
-                          height: 50,
-                          width: 50,
-                        )),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(data["name"],style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 17)),
-                        Text(data["message"],style: const TextStyle(color: Colors.black26)),
-                      ],
+                  //profile name and message
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(data["name"],
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 17)),
+                          Text(data["message"],
+                              style: const TextStyle(color: Colors.black26)),
+                        ],
+                      ),
                     ),
-                    Column(
-                      children: [
-                        Text(data["time"],style: const TextStyle(color: Colors.black26)),
-                        Text(data["unread"]),
-                      ],
-                    ),
-                  ],
-                )),
+                  ),
+
+                  //----->
+                  //chat message time and unread message number
+                  //----->
+                  Column(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(data["time"],
+                          style: const TextStyle(color: Colors.black26)),
+                      CircleAvatar(
+                          backgroundColor: const Color(0xff237B86),
+                          // Set color
+                          radius: 8,
+                          // Set radius
+                          child: Text(data["unread"],style: const TextStyle(color: Colors.white,fontSize: 8),)),
+                    ],
+                  ),
+                ],
+              ),
+            ),
           ),
           onTap: () {
-            // Perform actions on tap if needed
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => UserChat(
+                  userName: data["name"],
+                  userImage: data["image"],
+                ),
+              ),
+            );
           },
         );
       },

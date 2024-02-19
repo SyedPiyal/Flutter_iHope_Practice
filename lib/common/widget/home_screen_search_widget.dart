@@ -1,5 +1,4 @@
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SearchFiled extends StatefulWidget {
@@ -19,11 +18,11 @@ class _SearchFiled extends State<SearchFiled>{
       height: 50,
       child: TextField(
 
-        style:TextStyle(fontSize:12),
+        style:const TextStyle(fontSize:12),
         decoration: InputDecoration(
             prefixIcon: const Icon(Icons.search),
-            labelStyle:TextStyle(fontSize:12),
-            hintStyle: TextStyle(fontSize:12),
+            labelStyle:const TextStyle(fontSize:12),
+            hintStyle: const TextStyle(fontSize:12),
             hintText: widget.hintTxt,
             filled: true,
             fillColor: const Color(0xFFCFDFE2),
