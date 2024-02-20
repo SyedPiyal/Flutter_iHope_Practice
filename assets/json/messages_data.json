@@ -1,0 +1,6 @@
+[
+  {"sender": "User1", "text": "Hello there!", "timestamp": "2024-02-20T12:34:56"},
+  {"sender": "User2", "text": "Hi! How are you?", "timestamp": "2024-02-20T12:35:00"},
+  {"sender": "User1", "text": "I'm good, thank you!", "timestamp": "2024-02-20T12:35:30"},
+  {"sender": "User2", "text": "That's great!", "timestamp": "2024-02-20T12:36:00"}
+]

@@ -1,10 +1,7 @@
-
-
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ihope_practice/views/home_1/widget/home_body_bottom.dart';
-import 'package:ihope_practice/views/home_1/widget/home_body_top.dart';
+import 'package:ihope_practice/views/home/widget/home_body_bottom.dart';
+import 'package:ihope_practice/views/home/widget/home_body_top.dart';
+
 
 class HomePage extends StatefulWidget {
   final VoidCallback toggleLocale;

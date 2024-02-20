@@ -1,9 +1,10 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:ihope_practice/views/add_prescription/add_prescription_view.dart';
 import 'package:ihope_practice/views/chat_list/chat_view.dart';
-import 'package:ihope_practice/views/home_1/home1_view.dart';
-import 'package:ihope_practice/views/home_2/home2_view.dart';
 import 'package:ihope_practice/views/profile/profile_view.dart';
+
+import '../../views/home/home_view.dart';
 
 
 class AnimatedCurvedNavigationBar extends StatefulWidget {
@@ -25,7 +26,7 @@ class _AnimatedCurvedNavigationBar extends State<AnimatedCurvedNavigationBar>{
     super.initState();
     screen = [
       HomePage(toggleLocale: widget.toggleLocale),
-      const MyHomePage(title: 'home'),
+      const AddPrescriptionScreen(),
       const ChatPage(),
       const UserProfile(),
     ];

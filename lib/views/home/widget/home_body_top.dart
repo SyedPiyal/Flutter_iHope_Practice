@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../common/widget/home_screen_search_widget.dart';
+import '../../account_info/account_Info_view.dart';
 
 class HomeBodyTop extends StatefulWidget {
   const HomeBodyTop({super.key, required this.toggleLocale});
@@ -121,20 +122,29 @@ class _HomeBodyTop extends State<HomeBodyTop> {
                 width: 10,
               ),
 
-              Container(
-                width: 50.0,
-                height: 50.0,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: AssetImage("assets/images/profile1.png")),
-                  borderRadius: BorderRadius.all(Radius.circular(25)),
+              InkWell(onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const AccountInfo(),
+                  ),
+                );
+              },
+                child: Container(
+                  width: 40.0,
+                  height: 40.0,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: AssetImage("assets/images/profile1.png")),
+                    borderRadius: BorderRadius.all(Radius.circular(25)),
+                  ),
                 ),
-              ),
+              )
+
             ],
           ),
         )
-
       ],
     );
   }

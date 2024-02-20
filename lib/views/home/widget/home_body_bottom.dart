@@ -6,7 +6,6 @@ import '../../../common/widget/home_screen_card_widget.dart';
 import '../../../common/widget/home_screen_gridview_widget.dart';
 import '../../../common/widget/home_screen_listview_widget.dart';
 import '../../../common/widget/home_screen_slider_widget.dart';
-import '../../home_2/home2_view.dart';
 
 class HomeBodyBottom extends StatefulWidget {
   const HomeBodyBottom({super.key});
@@ -23,7 +22,7 @@ class _HomeBodyBottom extends State<HomeBodyBottom> {
       child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(
-              left: 16, right: 16, top: 4, bottom: 80),
+              left: 16, right: 16, top: 4, bottom: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -37,7 +36,34 @@ class _HomeBodyBottom extends State<HomeBodyBottom> {
                       children: [
                         Expanded(
                           child: HomeScreenCardWidget(
-                            onTap: () {},
+                            onTap: () {
+
+                              //==============================
+                              // Bottom Navigation
+                              //==============================
+
+                              showModalBottomSheet<void>(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return const SizedBox(
+                                    height: 200,
+                                    child: Center(
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: <Widget>[
+                                          Text('Email'),
+                                          SizedBox(
+                                            height: 30,
+                                          ),
+                                          Text('care@ihope.com'),
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                },
+                              );
+                            },
                             title1: localization!.upload,
                             title2: localization.prescription,
                             backgroundColors: const [
@@ -53,12 +79,12 @@ class _HomeBodyBottom extends State<HomeBodyBottom> {
                         Expanded(
                           child: HomeScreenCardWidget(
                               onTap: () {
-                                Navigator.push(
+                                /*Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
                                         const MyHomePage(
-                                            title: 'home')));
+                                            title: 'home')));*/
                               },
                               title1: localization.all,
                               title2: localization.selfTest,
@@ -116,7 +142,7 @@ class _HomeBodyBottom extends State<HomeBodyBottom> {
                           style: const TextStyle(
                               fontWeight: FontWeight.bold)),
                       SizedBox(
-                        height: 300,
+                        height: 305,
                         child: GridViewWid(
                           itemList: [
                             {

@@ -45,6 +45,8 @@ dependencies:
   provider: ^5.0.0
   curved_navigation_bar: ^1.0.3
   circle_nav_bar: ^2.0.1+1
+  image_picker: ^1.0.7
+
 
 
 
@@ -75,6 +77,7 @@ flutter:
   assets:
     - assets/images/
     - assets/svg/
+    - assets/json/
 
 
 

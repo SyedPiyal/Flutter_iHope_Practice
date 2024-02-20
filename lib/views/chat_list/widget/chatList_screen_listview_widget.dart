@@ -23,25 +23,32 @@ class _ChatlistViewWidget extends State<ChatlistViewWidget> {
       padding: const EdgeInsets.symmetric(vertical: 8),
       itemBuilder: (BuildContext context, int index) {
         final data = widget.itemList[index];
-        return InkWell(
-          child: Card(
-            elevation: 0,
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Colors.white,
-              ),
-              padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 13),
-              alignment: Alignment.centerLeft,
+        return Card(
+          elevation: 0,
+          child: InkWell(
+            borderRadius: BorderRadius.circular(10),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => UserChat(
+                    userName: data["name"],
+                    userImage: data["image"],
+                  ),
+                ),
+              );
+            },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 15),
               child: Row(
                 children: [
-
                   //profile image
                   CircleAvatar(
                     radius: 25,
-                    backgroundImage: AssetImage(data["image"],),
+                    backgroundImage: AssetImage(
+                      data["image"],
+                    ),
                   ),
-
 
                   //profile name and message
                   Expanded(
@@ -63,7 +70,8 @@ class _ChatlistViewWidget extends State<ChatlistViewWidget> {
                   //----->
                   //chat message time and unread message number
                   //----->
-                  Column(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(data["time"],
                           style: const TextStyle(color: Colors.black26)),
@@ -72,24 +80,17 @@ class _ChatlistViewWidget extends State<ChatlistViewWidget> {
                           // Set color
                           radius: 8,
                           // Set radius
-                          child: Text(data["unread"],style: const TextStyle(color: Colors.white,fontSize: 8),)),
+                          child: Text(
+                            data["unread"],
+                            style: const TextStyle(
+                                color: Colors.white, fontSize: 8),
+                          )),
                     ],
                   ),
                 ],
               ),
             ),
           ),
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => UserChat(
-                  userName: data["name"],
-                  userImage: data["image"],
-                ),
-              ),
-            );
-          },
         );
       },
     );
