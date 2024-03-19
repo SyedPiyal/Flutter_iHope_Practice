@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:ihope_practice/views/chat_list/widget/chatList_screen_listview_widget.dart';
 import 'package:ihope_practice/views/chat_list/widget/chatList_search_widget.dart';
 
+import '../../common/widget/custom_appBar.dart';
+
 
 class ChatPage extends StatefulWidget {
   const ChatPage({super.key});
@@ -124,33 +126,12 @@ class _ChatPageState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        //----->
-        //changing app back button color
-        //----->
-        iconTheme: const IconThemeData(
-          color: Colors.white, //change color here
-        ),
 
-        title: const Text('Chat',style: TextStyle(color: Colors.white)),
+      //==============================
+      // Custom AppBar
+      //==============================
 
-        //----->
-        //for changing app bar shape and color
-        //----->
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.bottomCenter,
-              end: Alignment.topCenter,
-              colors: [
-                Color(0xff237B86),
-                Color(0xff02485B),
-              ],
-            ),
-          ),
-        ),
-
-      ),
+      appBar: const MyAppBar(title: 'Chat List'), // No actions provided
       body: SafeArea(
         child: Container(
           width: double.infinity,

@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:ihope_practice/views/user_chat/widget/custom_appbar_widget.dart';
 import 'package:intl/intl.dart';
 import '../../model/chatMessage.dart';
 import 'package:image_picker/image_picker.dart';
@@ -69,107 +70,18 @@ class _UserChatState extends State<UserChat> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        titleSpacing: 0,
-        iconTheme: const IconThemeData(
-          color: Colors.white, // Change app back button color
-        ),
-        title: Row(
-          children: [
-            CircleAvatar(
-              radius: 15,
-              backgroundImage: AssetImage(widget.userImage),
-            ),
-
-            //==============================
-            // User name and status
-            //==============================
-
-            Padding(
-              padding: const EdgeInsets.only(left: 20, bottom: 5),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    widget.userName,
-                    style: const TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                  const Text(
-                    "online",
-                    style: TextStyle(fontSize: 10, color: Colors.white),
-                  ),
-                ],
-              ),
-            )
-          ],
-        ),
-        centerTitle: true,
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.call),
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.video_call),
-          ),
-
-          //==============================
-          // Menu Button
-          //==============================
-
-          PopupMenuButton<SampleItem>(
-            initialValue: selectedItem,
-            onSelected: (SampleItem item) {
-              setState(() {
-                selectedItem = item;
-              });
-            },
-            itemBuilder: (BuildContext context) => <PopupMenuEntry<SampleItem>>[
-              const PopupMenuItem<SampleItem>(
-                value: SampleItem.itemOne,
-                child: Text('Notification'),
-              ),
-              const PopupMenuItem<SampleItem>(
-                value: SampleItem.itemTwo,
-                child: Text('Remove'),
-              ),
-              const PopupMenuItem<SampleItem>(
-                value: SampleItem.itemThree,
-                child: Text('Block'),
-              ),
-            ],
-          ),
-        ],
-        flexibleSpace: Container(
-          //==============================
-          // Customize the app bar shape and color
-          //==============================
-
-          decoration: const BoxDecoration(
-            borderRadius: BorderRadius.vertical(
-              bottom: Radius.circular(30.0),
-            ),
-            gradient: LinearGradient(
-              begin: Alignment.bottomCenter,
-              end: Alignment.topCenter,
-              colors: [
-                Color(0xff237B86),
-                Color(0xff02485B),
-              ],
-            ),
-          ),
-        ),
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(30.0),
-          ),
-        ),
+      appBar:  CustomAppBar(
+        userName: widget.userName,
+        userImage: widget.userImage,
+        onMenuItemSelected: (item) {
+          setState(() {
+            selectedItem = item;
+          });
+        },
+        selectedItem: selectedItem,
       ),
+
+
       backgroundColor: const Color(0xFFfef1ee),
       body: Column(
         children: [

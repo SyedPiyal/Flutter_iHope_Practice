@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:ihope_practice/views/account_info/account_Info_view.dart';
 import 'package:ihope_practice/views/ihope_info/ihope_info_view.dart';
 import 'package:ihope_practice/views/profile/widget/profile_screen_item_widget.dart';
+import 'package:ihope_practice/views/settings/settings_view.dart';
+
+import '../../common/widget/custom_appBar.dart';
+import '../notification/notification_view.dart';
 
 class UserProfile extends StatefulWidget {
   const UserProfile({super.key});
@@ -15,33 +19,31 @@ class _UserProfileState extends State<UserProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          //----->
-          //changing app back button color
-          //----->
-          iconTheme: const IconThemeData(
-            color: Colors.white, //change color here
-          ),
 
-          title: const Text('Profile', style: TextStyle(color: Colors.white)),
+      //==============================
+      // Custom AppBar
+      //==============================
 
-          //----->
-          //for changing app bar shape and color
-          //----->
-
-          flexibleSpace: Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.bottomCenter,
-                end: Alignment.topCenter,
-                colors: [
-                  Color(0xff237B86),
-                  Color(0xff02485B),
-                ],
-              ),
+      appBar: MyAppBar(title: 'Profile',actions: [
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: IconButton(
+        icon: const Icon(Icons.notifications),
+        onPressed: () {
+          // Handle search action
+          Navigator.push(
+            context,
+              MaterialPageRoute(
+                builder: (context) => NotificationPage(),
+                ),
+          );
+        },
             ),
-          ),
-        ),
+      ),
+    // Add more action buttons as needed
+    ],),
+
+
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
           child: Column(
@@ -121,11 +123,18 @@ class _UserProfileState extends State<UserProfile> {
               ProfileScreenItem(
                   onTap: () {
 
+
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const Settings(),
+                      ),
+                    );
                     //==============================
                     // Alert Dialog
                     //==============================
 
-                    showDialog<String>(
+                    /*showDialog<String>(
                       context: context,
                       builder: (BuildContext context) => AlertDialog(
                         title: const Text('Are You Sure You Want to Sign Out ?'),
@@ -141,11 +150,11 @@ class _UserProfileState extends State<UserProfile> {
                           ),
                         ],
                       ),
-                    );
+                    );*/
                   },
-                  titleName: 'Sign Out',
-                  subTitleName: 'Exit',
-                  iconImage: 'assets/images/iv_signOut.jpg'),
+                  titleName: 'Settings',
+                  subTitleName: 'Manage & Settings',
+                  iconImage: 'assets/images/ic_settings.png'),
             ],
           ),
         ),

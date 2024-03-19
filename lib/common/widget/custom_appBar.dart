@@ -1,34 +1,20 @@
 import 'package:flutter/material.dart';
 
-class CustomAppBar extends StatefulWidget {
-  final String pageName;
-  const CustomAppBar({super.key, required this.pageName});
+class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
+  final String title;
+  final List<Widget>? actions;
 
-  @override
-  State<CustomAppBar> createState() => _CustomAppBarState();
-}
+  const MyAppBar({Key? key, required this.title, this.actions}) : super(key: key);
 
-class _CustomAppBarState extends State<CustomAppBar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      //----->
-      //changing app back button color
-      //----->
       iconTheme: const IconThemeData(
-        color: Colors.white, //change your color here
+        color: Colors.white,
       ),
-
-      title: Text(widget.pageName),
-      centerTitle: true,
-      //----->
-      //for changing app bar shape and color
-      //----->
+      title: Text(title, style: const TextStyle(color: Colors.white)),
       flexibleSpace: Container(
         decoration: const BoxDecoration(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(30.0),
-          ),
           gradient: LinearGradient(
             begin: Alignment.bottomCenter,
             end: Alignment.topCenter,
@@ -39,11 +25,10 @@ class _CustomAppBarState extends State<CustomAppBar> {
           ),
         ),
       ),
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(
-          bottom: Radius.circular(30.0),
-        ),
-      ),
+      actions: actions,
     );
   }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }

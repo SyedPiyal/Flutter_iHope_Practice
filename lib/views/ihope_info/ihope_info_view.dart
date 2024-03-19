@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../common/widget/custom_appBar.dart';
 import '../profile/widget/profile_screen_item_widget.dart';
 
 class IhopeInfo extends StatefulWidget {
@@ -13,33 +14,12 @@ class _IhopeInfoState extends State<IhopeInfo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        //----->
-        //changing app back button color
-        //----->
-        iconTheme: const IconThemeData(
-          color: Colors.white, //change color here
-        ),
 
-        title: const Text('iHope Info', style: TextStyle(color: Colors.white)),
+      //==============================
+      // Custom App Bar
+      //==============================
 
-        //----->
-        //for changing app bar shape and color
-        //----->
-
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.bottomCenter,
-              end: Alignment.topCenter,
-              colors: [
-                Color(0xff237B86),
-                Color(0xff02485B),
-              ],
-            ),
-          ),
-        ),
-      ),
+      appBar: const MyAppBar(title: 'iHope Info'), // No actions provided
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
         child: Column(

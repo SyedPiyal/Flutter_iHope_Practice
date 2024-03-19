@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:ihope_practice/views/medical_records/medical_record.dart';
 import '../../../common/widget/home_quick_access_lisview_widget.dart';
 import '../../../common/widget/home_screen_card_widget.dart';
 import '../../../common/widget/home_screen_gridview_widget.dart';
@@ -42,26 +43,11 @@ class _HomeBodyBottom extends State<HomeBodyBottom> {
                               // Bottom Navigation
                               //==============================
 
-                              showModalBottomSheet<void>(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return const SizedBox(
-                                    height: 200,
-                                    child: Center(
-                                      child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: <Widget>[
-                                          Text('Email'),
-                                          SizedBox(
-                                            height: 30,
-                                          ),
-                                          Text('care@ihope.com'),
-                                        ],
-                                      ),
+                              Navigator.push(
+                                context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const MedicalRecord(),
                                     ),
-                                  );
-                                },
                               );
                             },
                             title1: localization!.upload,

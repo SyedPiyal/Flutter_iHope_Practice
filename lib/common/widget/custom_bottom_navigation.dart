@@ -26,7 +26,7 @@ class _AnimatedCurvedNavigationBar extends State<AnimatedCurvedNavigationBar>{
     super.initState();
     screen = [
       HomePage(toggleLocale: widget.toggleLocale),
-      const AddPrescriptionScreen(),
+      const FlightScreen(),
       const ChatPage(),
       const UserProfile(),
     ];
